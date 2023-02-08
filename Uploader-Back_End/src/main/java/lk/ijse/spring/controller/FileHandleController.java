@@ -23,6 +23,7 @@ import java.nio.file.Paths;
 @RestController
 @RequestMapping("/upload")
 @CrossOrigin
+@ResponseBody
 public class FileHandleController {
 
     @GetMapping("get")
