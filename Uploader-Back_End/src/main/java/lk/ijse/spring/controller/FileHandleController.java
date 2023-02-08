@@ -25,6 +25,17 @@ import java.nio.file.Paths;
 @CrossOrigin
 public class FileHandleController {
 
+    @GetMapping("get")
+    public ResponseEntity<byte[]> getImage() throws IOException {
+        Path path = Paths.get("D:\\upload\\" + "abc.jpg");
+        byte[] image = Files.readAllBytes(path);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_JPEG);
+        headers.setContentLength(image.length);
+
+        return new ResponseEntity<>(image, headers, HttpStatus.OK);
+    }
 
 
     @PostMapping("post")
