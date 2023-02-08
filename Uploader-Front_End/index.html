@@ -13,6 +13,18 @@
 
 <h1> ~ Spring File Uploader ~ </h1>
 
+<form id="imageForm">
+    <input type="file" id="imageFile"/>
+    <input type="button" id="uploadBtn" value="Upload"/>
+    <input type="button" id="getImage" value="Get Image"/>
+
+</form>
+<div id="imagePreview">
+    <img id="loadImg" src='http://localhost:8080/Uploader_Back_End_war/upload/get'>
+</div>
+
+
+
 
 <!--Import js for bootstrap-->
 <script src="assests/js/bootstrap.min.js"></script>
@@ -21,6 +33,27 @@
 <script>
 
     let baseURL="http://localhost:8080/Uploader_Back_End_war/";
+
+    $(document).ready(function() {
+        $("#uploadBtn").click(function() {
+            var formData = new FormData();
+            formData.append("imageFile", $("#imageFile")[0].files[0]);
+
+            $.ajax({
+                url: baseURL+"/upload/post",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    $("#imagePreview").html("<img src='" + data + "'/>");
+                }
+            });
+        });
+    });
+
+
+
 
 
 </script>
