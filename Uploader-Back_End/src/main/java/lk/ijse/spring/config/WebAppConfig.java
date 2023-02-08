@@ -19,5 +19,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @ComponentScan(basePackages = "lk.ijse.spring.controller")
 public class WebAppConfig {
 
-
+    @Bean
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        resolver.setMaxUploadSize(1000000000);
+        return resolver;
+    }
 }
