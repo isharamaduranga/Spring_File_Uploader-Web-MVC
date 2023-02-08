@@ -52,7 +52,29 @@
         });
     });
 
+    $('#getImage').click(function () {
+        $.ajax({
+            url: baseURL+'/upload/get',
+            type: 'GET',
+            async:false,
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    });
 
+    $("#imagePreview").change(function () {
+        let reader = new FileReader();
+
+        reader.onload = function (e) {
+            $("#loadImg").attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(this.files[0]);
+    });
 
 
 
